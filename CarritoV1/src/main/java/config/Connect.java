@@ -5,11 +5,6 @@ import java.sql.*;
 
 public   class Connect {
 
-   /* private static String URL = "jdbc:postgresql://localhost:5432/inventario_productos";
-    private static String USER = "postgres";
-    private static String PASSWORD = "jhonatan2025sql";*/
-
-
     public static Connection connection(){
         Credentials cr = new Credentials();
         Connection con = null;

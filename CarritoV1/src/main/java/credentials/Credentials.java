@@ -2,9 +2,9 @@ package credentials;
 
 public class Credentials {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/inventario_productos";
-    private static final   String USER = "postgres";
-    private static final String PASSWORD = "jhonatan2025sql";
+    private static final String URL = "jdbc:postgresql://localhost:5432/name_bd";
+    private static final   String USER = "user_bd";
+    private static final String PASSWORD = "password_bd";
 
     public String getUrl(){
         return URL;
