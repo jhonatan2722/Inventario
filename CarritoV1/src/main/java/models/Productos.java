@@ -19,7 +19,7 @@ public class Productos {
             throw new IllegalArgumentException("La Categoria Del producto no puede estar vacia");
         }
         if(precio.compareTo(BigDecimal.ZERO)<0){
-            throw new IllegalArgumentException("El precio  Del producto no puede estar vacia");
+            throw new IllegalArgumentException("El precio  Del producto no puede ser Menor a 0");
         }
         if(stock <0){
             throw new IllegalArgumentException("El Stock del producto no puede ser menor a 0");

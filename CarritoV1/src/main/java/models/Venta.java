@@ -18,7 +18,7 @@ public class Venta {
              this.fecha_venta = fecha_venta;
 
      }
-
+//Se supone es para consultar las ventas ._.
     public Venta( int id_venta, int id_cliente, int id_producto, int cantidad, LocalDate fecha_venta) {
 
         this.id_venta = id_venta;

@@ -24,13 +24,30 @@ public class ProductoDao {
         }
     }
 
-    public ArrayList<Productos> mostrarProductos (){
-
-        ArrayList<Productos> productos = new ArrayList<>();
-        String sql = "SELECT id, descripcion, categoria, precio, stock  FROM productos";
+    public void  updateProduct(Productos producto ,int cantidad){
+        String sql = "UPDATE productos SET stock = stock - ? WHERE id = ? ";
         try(Connection con = Connect.connection();
             PreparedStatement pstm = con.prepareStatement(sql)
-        ){
+            ){
+
+            pstm.setInt(1, cantidad);
+            pstm.setInt(2,producto.getId_p());
+            pstm.executeUpdate();
+
+        }catch(SQLException e){
+
+        }
+
+    }
+
+    public ArrayList<Productos> mostrarProductos(String categoria){
+
+        ArrayList<Productos> productos = new ArrayList<>();
+        String sql = "SELECT id, descripcion, categoria, precio, stock  FROM productos WHERE categoria = ?";
+        try(Connection con = Connect.connection();
+            PreparedStatement pstm = con.prepareStatement(sql)
+        ){  pstm.setString(1,categoria);
+
             try(ResultSet rs = pstm.executeQuery();) {
 
                 while(rs.next()){
@@ -47,22 +64,23 @@ public class ProductoDao {
         return productos ;
     }
 
-    public void  updateProduct(Productos producto ,int cantidad){
-        String sql = "UPDATE productos SET stock = stock - ? WHERE id = ? ";
+//Para que crear otra clase dao solo para este metodo???
+    public ArrayList<Categoria> verCategorias(){
+
+        ArrayList<Categoria> categoria = new ArrayList<>();
+        String sql = "SELECT DISTINCT categoria  FROM productos";
         try(Connection con = Connect.connection();
             PreparedStatement pstm = con.prepareStatement(sql)
-            ){
-
-            pstm.setInt(1, cantidad);
-            pstm.setInt(2,producto.getId_p());
-            pstm.executeUpdate();
-
+        ){
+            try(ResultSet rs = pstm.executeQuery();) {
+                while(rs.next()){
+                    Categoria ct = new Categoria(rs.getString("categoria"));
+                    categoria.add(ct);
+                }
+            }
         }catch(SQLException e){
-
+            System.out.println(e.getMessage());
         }
-
-
+        return categoria ;
     }
-
-
 }

@@ -3,7 +3,7 @@ import credentials.*;
 
 import java.sql.*;
 
-public   class Connect {
+public class Connect{
 
     public static Connection connection(){
         Credentials cr = new Credentials();
